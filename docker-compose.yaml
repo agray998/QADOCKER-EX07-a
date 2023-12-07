@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  web:
+    image: nginx
+    volumes:
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /tmp/nginx.conf
+    environment: 
+      FLASK_SERVER_ADDR: backend:${PORT} 
+    command: /bin/bash -c "envsubst < /tmp/nginx.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'" 
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    depends_on:
+      - backend
+
+  backend:
+    image: agray998/flask-mongo-app
+    build:
+      context: flask
+      target: builder
+    # flask requires SIGINT to stop gracefully
+    # (default stop signal from Compose is SIGTERM)
+    stop_signal: SIGINT
+    environment:
+      FLASK_SERVER_PORT: ${PORT}
+    depends_on:
+      -  mongo  
+
+  mongo:
+    image: mongo
