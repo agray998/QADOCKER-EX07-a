@@ -1,12 +1,7 @@
-## Compose sample application
+# QADOCKER Ex07-a
+Starting point for QADOCKER Exercise 07-a, this is a three-tier app which uses a mongo database, with a flask API and NGINX reverse proxy. This app is based on an example from the [awesome compose](https://github.com/docker/awesome-compose) library of sample containerised applications for use with docker compose
 
-### Use with Docker Development Environments
-
-You can open this sample in the Dev Environments feature of Docker Desktop version 4.12 or later.
-
-[Open in Docker Dev Environments <img src="../open_in_new.svg" alt="Open in Docker Dev Environments" align="top"/>](https://open.docker.com/dashboard/dev-envs?url=https://github.com/docker/awesome-compose/tree/master/nginx-flask-mongo)
-
-### Python/Flask application with Nginx proxy and a Mongo database
+## Python/Flask application with Nginx proxy and a Mongo database
 
 Project structure:
 ```
